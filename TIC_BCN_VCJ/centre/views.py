@@ -9,3 +9,26 @@ def index(request):
     # template = loader.get_template('index.html')
     # dades = template.render({'nombre':profesor["name"]})
     return render(request,'index.html',{'nombre':profesor["name"],'surname':profesor["surname"]})
+
+def teacher(request):
+    teachers = [
+        {
+        "name":"Roger",
+        "surname_1":"Sobrino",
+        "surname_2":"Caceres",
+        "email": "roger@iticbcn.cat",
+        "course": "2024",
+        "tutor": "si",
+        "modules":"M07"
+        },
+        {
+            "name":"Juanma",
+            "surname_1":"Sobrino",
+            "surname_2":"Caceres",
+            "email": "roger@iticbcn.cat",
+            "course": "2024",
+            "tutor": "si",
+            "modules":"M07"
+        }]
+    return render(request,'index.html',{'data':teachers})
+    
