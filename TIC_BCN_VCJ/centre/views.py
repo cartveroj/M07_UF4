@@ -30,5 +30,26 @@ def teacher(request):
             "tutor": "si",
             "modules":"M07"
         }]
-    return render(request,'index.html',{'data':teachers})
-    
+    return render(request,'index_teachers.html',{'data':teachers})
+
+def student(request):
+    students = [
+        {
+        "name":"Roger",
+        "surname_1":"Sobrino",
+        "surname_2":"Caceres",
+        "email": "roger@iticbcn.cat",
+        "course": "2024",
+        "tutor": "si",
+        "modules":"M07"
+        },
+        {
+            "name":"Juanma",
+            "surname_1":"Sobrino",
+            "surname_2":"Caceres",
+            "email": "roger@iticbcn.cat",
+            "course": "2024",
+            "tutor": "si",
+            "modules":"M07"
+        }]
+    return render(request,'index_students.html',{'data':students})

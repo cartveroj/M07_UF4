@@ -8,13 +8,9 @@
     {% include "navbar/navbar.html" %}
 
     <p>hola desde index template</p>
-    <!-- <div>
-        <label>Nom:</label>{{nombre}}
-    </div>
-    <div>
-        <label>Cognom:</label>{{surname}}
-    </div> -->
-    {% include block content%}
+ 
+    {% block content %}
+
     {% endblock %}
 </body>
 </html>
