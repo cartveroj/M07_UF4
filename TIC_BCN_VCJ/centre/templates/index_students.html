@@ -1,7 +1,24 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<p>Students</p>
+<H1>Information of students from TIC center (center)</H1>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+      <th>Course</th>
+      <th>Modules</th>
+    </tr>
+{% for student in data %}
+    <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.surname_1}} {{student.surname_2}}</td>
+        <td>{{student.age}}</td>
+        <td>{{student.course}}</td>
+        <td>{{student.modules}}</td>
+    </tr>
+{% endfor %}
 
-
+</table>
 {% endblock %}

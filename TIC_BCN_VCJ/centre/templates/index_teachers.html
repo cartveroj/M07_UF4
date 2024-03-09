@@ -1,7 +1,26 @@
 {% extends 'index.html' %}
-
 {% block content %}
-<p>Teachers</p>
-
-
+<H1>Information of teachers from TIC center (center)</H1>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Rol</th>
+      <th>Tutor</th>
+      <th>Course</th>
+      <th>Modules</th>
+      <th>Email</th>
+    </tr>
+{% for teacher in data %}
+    <tr>
+        <td>{{teacher.name}}</td>
+        <td>{{teacher.surname_1}} {{teacher.surname_2}}</td>
+        <td>{{teacher.rol}}</td>
+        <td>{{teacher.tutor}}</td>
+        <td>{{teacher.course}}</td>
+        <td>{{teacher.modules}}</td>
+        <td>{{teacher.email}}</td>
+    </tr>
+{% endfor %}
+</table>
 {% endblock %}
