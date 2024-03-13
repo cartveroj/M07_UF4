@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<H1>Information of {{teacher.name}} (center)</H1>
+
+    <ul>
+      <li>ID: {{teacher.id}}</li>
+      <li>Name: {{teacher.name}}</li>
+      <li>Surname: {{teacher.surname_1}} {{teacher.surname_2}}</li>
+      <li>Rol: {{teacher.rol}}</li>
+      <li>Tutor: {{teacher.tutor}}</li>
+      <li>Course: {{teacher.course}}</li>
+      <li>Modules: {{teacher.modules}}</li>
+      <li>Email: {{teacher.email}}</li>
+    </ul>
+
+<a href="{% url 'teachers' %}">Go back</a>
+{% endblock %}
