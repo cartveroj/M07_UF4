@@ -3,6 +3,9 @@ from django.urls import path
 from . import views
 #view.teacher es el nombre de las funciones
 urlpatterns = [
+    #rutas de los endpoints
+    path('', views.welcome, name='centre'),
+
     path('teachers', views.teacher, name='teachers'),
     path('students', views.student, name='students'),
 

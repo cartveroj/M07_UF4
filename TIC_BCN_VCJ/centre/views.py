@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import Context , loader
 from django.shortcuts import render
 # Create your views here.
+
+#variables globales
 teachers = [
         {
         "id":"1",
@@ -81,14 +83,21 @@ students = [
         "modules":"M07,M08,M09,M06",
         "rol":"student"
         }]
+
+#endPoint que retorna una vista de bienvenida
+def welcome(request):
+    return render(request,'index_centre.html')
+
+#endPoint que va hacia la vista de teachers con el un objeto que contiene los datos de teachers
 def teacher(request):
 
     return render(request,'index_teachers.html',{'data':teachers})
 
+#endPoint que va hacia la vista de stdudents con el un objeto que contiene los datos de students
 def student(request):
     
     return render(request,'index_students.html',{'data':students})
-
+#recibe por parametro la id y realiza el filtro y envia el objeto que coincide
 def teacherInfo(request, pk):
     teacher_obj = None
     for i in teachers:
@@ -96,6 +105,7 @@ def teacherInfo(request, pk):
             teacher_obj = i
     return render(request,'teacher.html',{'teacher':teacher_obj})
 
+#recibe por parametro la id y realiza el filtro y envia el objeto que coincide
 def studentInfo(request, pk ):
     student_obj = None
     for i in students:
