@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<H1>Information of {{student.name}} (center)</H1>
+    <lu>
+      <li>ID: {{student.id}}</li>
+      <li>Name: {{student.name}}</li>
+      <li>Surname: {{student.surname_1}} {{student.surname_2}}</li>
+      <li>Rol: {{student.rol}}</li>
+      <li>Age: {{student.age}}</li>
+      <li>Course: {{student.course}}</li>
+      <li>Modules: {{student.modules}}</li>
+    </lu>
+<br>
+<a href="{% url 'students' %}">Go back</a>
+{% endblock %}

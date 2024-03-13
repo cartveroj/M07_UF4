@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 <head>
     <title>Primer proyecto</title>
+    
 </head>
 <body>
-
     {% include "navbar/navbar.html" %}
-
- 
-    {% block content %}
-
-<!-- contenido de las views de students y teachers -->
     
+    {% block content %}
+    <!-- contenido de las views de students y teachers -->          
     {% endblock %}
-
+    
 </body>
 </html>

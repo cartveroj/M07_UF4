@@ -4,19 +4,20 @@
 <H1>Information of students from TIC center (center)</H1>
 <table>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Surname</th>
-      <th>Age</th>
-      <th>Course</th>
-      <th>Modules</th>
+      <th>Rol</th>
+
     </tr>
 {% for student in data %}
     <tr>
+        <td>{{student.id}}</td>
         <td>{{student.name}}</td>
         <td>{{student.surname_1}} {{student.surname_2}}</td>
-        <td>{{student.age}}</td>
-        <td>{{student.course}}</td>
-        <td>{{student.modules}}</td>
+        <td>{{student.rol}}</td>
+        <td><a href="{% url 'student' student.id %}">More information</a></td>
+
     </tr>
 {% endfor %}
 
