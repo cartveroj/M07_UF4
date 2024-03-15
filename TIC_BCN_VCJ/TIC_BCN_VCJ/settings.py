@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'TIC_BCN_VCJ.wsgi.application'
 DATABASES = {
      'default': {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgresP2",
+        "NAME": "postgresP4",
         "USER": "veronica",
         "PASSWORD": "pirineus",
         "HOST": "127.0.0.1",
