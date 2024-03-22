@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context , loader
 from django.shortcuts import render
-from .forms import UserForm
+from .forms import UserForm #importamos la clase UserForm 
 # Create your views here.
 
 #variables globales
@@ -114,6 +114,7 @@ def studentInfo(request, pk ):
             student_obj = i
     return render(request,'student.html',{'student':student_obj})
 
+#metodo que retorna un objeto del tipo UserForm a la vista de form.html
 def user_form(request):
     form = UserForm()
     context = {'form':form}

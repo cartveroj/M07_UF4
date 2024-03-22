@@ -2,9 +2,9 @@
 
 ### Veronica Cartagena
 
-**Imagen base de datos**
-![imagen_base_de_datos](img/01_bbdd_modelo.png)
+**Imagen Form**
+![imagen_form_con_asp](img/03_form.png)
 
-**Imagen migración**
-![imagen_migration](img/02_migration.png)
+**Imagen Form sin asp**
+![imagen_form_sin_asp](img/03_form_sense_asp.png)
 
