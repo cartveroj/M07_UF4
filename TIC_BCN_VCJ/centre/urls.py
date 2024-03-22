@@ -11,4 +11,7 @@ urlpatterns = [
 
     path('students/student/<str:pk>', views.studentInfo, name='student'),
     path('teachers/teacher/<str:pk>', views.teacherInfo, name='teacher'),
+
+    path('register_user', views.user_form, name='user_form'),
+
 ]
