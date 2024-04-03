@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context , loader
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .forms import UserForm #importamos la clase UserForm 
 # Create your views here.
 
@@ -117,5 +117,14 @@ def studentInfo(request, pk ):
 #metodo que retorna un objeto del tipo UserForm a la vista de form.html
 def user_form(request):
     form = UserForm()
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+           user = form.save()
+           if user.rol == 'a':
+            return redirect('students')
+           else:
+            return redirect('teachers')   
     context = {'form':form}
     return render(request, 'form.html',context)
+
