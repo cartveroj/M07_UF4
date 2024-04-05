@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import Context , loader
 from django.shortcuts import render , redirect
 from .forms import UserForm #importamos la clase UserForm 
+from .models import User
 # Create your views here.
 
 #variables globales
@@ -87,31 +88,28 @@ students = [
 
 #endPoint que retorna una vista de bienvenida
 def welcome(request):
+
     return render(request,'index_centre.html')
 
 #endPoint que va hacia la vista de teachers con el un objeto que contiene los datos de teachers
 def teacher(request):
-
-    return render(request,'index_teachers.html',{'data':teachers})
+  
+    teachersData = User.objects.filter(rol='teacher')
+    return render(request,'index_teachers.html',{'data':teachersData})
 
 #endPoint que va hacia la vista de stdudents con el un objeto que contiene los datos de students
 def student(request):
     
-    return render(request,'index_students.html',{'data':students})
+    studentsData = User.objects.filter(rol='student')
+    return render(request,'index_students.html',{'data':studentsData})
 #recibe por parametro la id y realiza el filtro y envia el objeto que coincide
 def teacherInfo(request, pk):
-    teacher_obj = None
-    for i in teachers:
-        if i['id'] == pk:
-            teacher_obj = i
+    teacher_obj = User.objects.get(id=pk)
     return render(request,'teacher.html',{'teacher':teacher_obj})
 
 #recibe por parametro la id y realiza el filtro y envia el objeto que coincide
 def studentInfo(request, pk ):
-    student_obj = None
-    for i in students:
-        if i['id'] == pk:
-            student_obj = i
+    student_obj = User.objects.get(id=pk)
     return render(request,'student.html',{'student':student_obj})
 
 #metodo que retorna un objeto del tipo UserForm a la vista de form.html
@@ -121,7 +119,7 @@ def user_form(request):
         form = UserForm(request.POST)
         if form.is_valid():
            user = form.save()
-           if user.rol == 'a':
+           if user.rol == 'student':
             return redirect('students')
            else:
             return redirect('teachers')   
