@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Alert..¡¡</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>You are deleting : {{user.name}}, Are you sure?</p>
+    <button><a href="{% url 'centre' %}">Go Back</a></button>
+    <input type="submit" value="Yes">
+</form>
+
+
+{% endblock %}

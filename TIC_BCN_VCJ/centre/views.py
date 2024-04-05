@@ -64,3 +64,12 @@ def update_user(request,pk):
    context = {'form':form} 
    return render(request, 'form.html',context)
 
+def delete_user(request,pk):
+    user_obj = User.objects.get(id=pk)
+    if request.method == 'POST':
+       user_obj.delete()
+       return redirect('centre')
+    context = {'user':user_obj} 
+    return render(request, 'delete_form.html',context)
+          
+    
