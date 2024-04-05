@@ -6,86 +6,6 @@ from .forms import UserForm #importamos la clase UserForm
 from .models import User
 # Create your views here.
 
-#variables globales
-teachers = [
-        {
-        "id":"1",
-        "name":"Roger",
-        "surname_1":"Sobrino",
-        "surname_2":"Caceres",
-        "email": "roger@iticbcn.cat",
-        "course": "2024",
-        "tutor": "si",
-        "modules":"M07",
-        "rol":"teacher"
-        },
-        {
-            "id":"2",
-            "name":"Juan Manuel",
-            "surname_1":"Sanchez",
-            "surname_2":"Bel",
-            "email": "juanma@iticbcn.cat",
-            "course": "2024",
-            "tutor": "si",
-            "modules":"M06",
-            "rol":"teacher"
-        },
-        {
-            "id":"3",
-            "name":"Josep Oriol",
-            "surname_1":"Roca",
-            "surname_2":"Fabra",
-            "email": "oriol@iticbcn.cat",
-            "course": "2024",
-            "tutor": "si",
-            "modules":"M09",
-            "rol":"teacher"
-        },{
-            "id":"4",
-            "name":"Xavi",
-            "surname_1":"Quesada",
-            "surname_2":"Puertas",
-            "email": "xavi@iticbcn.cat",
-            "course": "2024",
-            "tutor": "no",
-            "modules":"M08",
-            "rol":"teacher"
-        }]
-students = [
-        {
-        "id":"1",
-        "name":"Joana",
-        "surname_1":"Li",
-        "surname_2":"Chen",
-        "age":"24",
-        "email": "joana_li@iticbcn.cat",
-        "course": "DAW2A",
-        "modules":"M07,M08,M09",
-        "rol":"student"
-        },
-        {
-        "id":"2",
-        "name":"Oriana",
-        "surname_1":"Rojas",
-        "surname_2":"Guedez",
-        "age":"24",
-        "email": "oriana@iticbcn.cat",
-        "course": "DAW2A",
-        "modules":"M07,M09,M08,M06",
-        "rol":"student"
-        },
-         {
-        "id":"3",
-        "name":"Veronica",
-        "surname_1":"Cartagena",
-        "surname_2":"Jaldin",
-        "age":"30",
-        "email": "veronica@iticbcn.cat",
-        "course": "DAW2A",
-        "modules":"M07,M08,M09,M06",
-        "rol":"student"
-        }]
-
 #endPoint que retorna una vista de bienvenida
 def welcome(request):
 
@@ -125,4 +45,22 @@ def user_form(request):
             return redirect('teachers')   
     context = {'form':form}
     return render(request, 'form.html',context)
+
+# def get_user(request,pk):
+#    user_obj = User.objects.get(id=pk)
+# return render(request, 'form.html',user_obj)
+
+def update_user(request,pk):
+   user_obj = User.objects.get(id=pk)
+   form = UserForm(instance=user_obj)
+   if request.method == 'POST':
+        form = UserForm(request.POST, instance=user_obj)
+        if form.is_valid():
+            user = form.save()
+            if user.rol == 'student':            
+                return redirect('students')
+            else:
+                return redirect('teachers') 
+   context = {'form':form} 
+   return render(request, 'form.html',context)
 

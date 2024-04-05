@@ -14,4 +14,7 @@ urlpatterns = [
 
     path('register_user', views.user_form, name='user_form'),
 
+    path('update_user/<str:pk>', views.update_user, name='update_user'),
+
+
 ]
