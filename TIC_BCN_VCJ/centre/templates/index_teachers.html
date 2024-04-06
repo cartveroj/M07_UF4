@@ -1,3 +1,4 @@
+
 {% extends 'index.html' %}
 {% block content %}
 <H1>Information of teachers from TIC center (center)</H1>
@@ -13,9 +14,13 @@
     <tr>
         <td>{{teacher.id}}</td>
         <td>{{teacher.name}}</td>
-        <td>{{teacher.surname_1}} {{teacher.surname_2}}</td>
+        <td>{{teacher.first_last_name}} {{teacher.second_last_name}}</td>
         <td>{{teacher.rol}}</td>
         <td><a href="{% url 'teacher' teacher.id %}">More information</a></td>
+        <td><button><a href="{% url 'update_user' teacher.id %}">Edit</a></button></td>
+        <td><button><a href="{% url 'delete_user' teacher.id %}">Delete</a></button></td>
+
+
       
     </tr>
 {% endfor %}

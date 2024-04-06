@@ -1,3 +1,4 @@
+
 {% extends 'index.html' %}
 
 {% block content %}
@@ -14,9 +15,12 @@
     <tr>
         <td>{{student.id}}</td>
         <td>{{student.name}}</td>
-        <td>{{student.surname_1}} {{student.surname_2}}</td>
+        <td>{{student.first_last_name}} {{student.second_last_name}}</td>
         <td>{{student.rol}}</td>
         <td><a href="{% url 'student' student.id %}">More information</a></td>
+        <td><button><a href="{% url 'update_user' student.id %}">Edit</a></button></td>
+        <td><button><a href="{% url 'delete_user' student.id %}">Delete</a></button></td>
+
     </tr>
 {% endfor %}
 

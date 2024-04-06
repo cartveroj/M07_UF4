@@ -1,9 +1,19 @@
 {% extends 'index.html' %}
 {% block content %}
-<h1>Register form</h1>
+<!-- segun si editar o registrar modificamos el titulo del formulario  -->
+<h1>{% if is_update %} Edit {% else %} Register {% endif %}form</h1>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p}}
     <input type="submit">
+    <br>
+    <!-- segun el rol del user retorna a la vista anterior -->
+    {% if rol == 'student' %}
+        <a href="{% url 'students' %}">Go back</a>
+    {% else %} 
+        <a href="{% url 'teachers' %}">Go back</a>
+    {% endif %}
 </form>
 {% endblock %}
+
+    
