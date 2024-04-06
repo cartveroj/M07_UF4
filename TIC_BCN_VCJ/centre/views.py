@@ -11,23 +11,24 @@ def welcome(request):
 
     return render(request,'index_centre.html')
 
-#endPoint que va hacia la vista de teachers con el un objeto que contiene los datos de teachers
+#endPoint que va hacia la vista de teachers on el objeto con la informacion recuperada de la base de datos
+#filtrada por rol
 def teacher(request):
   
     teachersData = User.objects.filter(rol='teacher')
     return render(request,'index_teachers.html',{'data':teachersData})
 
-#endPoint que va hacia la vista de stdudents con el un objeto que contiene los datos de students
+#endPoint que va hacia la vista de students con el objeto con la informacion recuperada de la base de datos
+#filtrada por rol
 def student(request):
-    
     studentsData = User.objects.filter(rol='student')
     return render(request,'index_students.html',{'data':studentsData})
-#recibe por parametro la id y realiza el filtro y envia el objeto que coincide
+#recibe por parametro la id y realiza el filtro en la base de datos y envia el objeto que coincide
 def teacherInfo(request, pk):
     teacher_obj = User.objects.get(id=pk)
     return render(request,'teacher.html',{'teacher':teacher_obj})
 
-#recibe por parametro la id y realiza el filtro y envia el objeto que coincide
+#recibe por parametro la id y realiza el filtro en la base de datos y envia el objeto que coincide
 def studentInfo(request, pk ):
     student_obj = User.objects.get(id=pk)
     return render(request,'student.html',{'student':student_obj})
@@ -46,13 +47,15 @@ def user_form(request):
     context = {'form':form}
     return render(request, 'form.html',context)
 
-# def get_user(request,pk):
-#    user_obj = User.objects.get(id=pk)
-# return render(request, 'form.html',user_obj)
-
+# metodo que actualiza la instancia user
+# recupera la instancia por la id retorna al form.html para editar 
+# verificamos que el metodo sea POST, validamos y guardamos los datos
+# segun el rol retorna a una vista u otra
 def update_user(request,pk):
    user_obj = User.objects.get(id=pk)
    form = UserForm(instance=user_obj)
+   is_update = True
+   rol_user = user_obj.rol
    if request.method == 'POST':
         form = UserForm(request.POST, instance=user_obj)
         if form.is_valid():
@@ -61,9 +64,15 @@ def update_user(request,pk):
                 return redirect('students')
             else:
                 return redirect('teachers') 
-   context = {'form':form} 
+   context = {'form':form,
+              'is_update': is_update,
+              'rol': rol_user} 
    return render(request, 'form.html',context)
 
+# metodo que elimina la instancia user
+# recupera la instancia por la id retorna al delete_form.html para reconfirmar la accion 
+# retorna y verificamos que el metodo sea POST, eliminamos los datos
+# y retorna a la pagina principal
 def delete_user(request,pk):
     user_obj = User.objects.get(id=pk)
     if request.method == 'POST':
